@@ -24,11 +24,11 @@ This repository contains my solution for the Flo Energy Tech Assessment 2025. Th
 
 **Sample Output (SQL Insert):**
 ```sql
-INSERT INTO meter_readings (nmi, reading_date, interval, value)
+INSERT INTO meter_readings (nmi, timestamp, consumption)
 VALUES
-  ('NMI123', '2025-09-12', 1, 1.1),
-  ('NMI123', '2025-09-12', 2, 2.2),
-  ('NMI123', '2025-09-12', 3, 3.3);
+  ('NMI123', '2025-09-12', 1.1),
+  ('NMI123', '2025-09-12', 2.2),
+  ('NMI123', '2025-09-12', 3.3);
 ```
 
 ---
@@ -40,6 +40,7 @@ VALUES
 - **Batch Inserts:** Uses prepared statements and batch execution for efficient, atomic database writes.
 - **Database Schema:**
   - PostgreSQL table: `meter_readings`
+  - Columns: `nmi`, `timestamp`, `consumption`
   - Constraints: primary key, foreign keys, not null, unique constraints
   - Partitioning: (recommended for production) by date or NMI for scalability
 - **Idempotency & Security:**
@@ -107,10 +108,10 @@ VALUES
 
 **Generated SQL:**
 ```sql
-INSERT INTO meter_readings (nmi, reading_date, interval, value)
+INSERT INTO meter_readings (nmi, timestamp, consumption)
 VALUES
-  ('NMI123', '2025-09-12', 1, 1.1),
-  ('NMI123', '2025-09-12', 2, 2.2);
+  ('NMI123', '2025-09-12', 1.1),
+  ('NMI123', '2025-09-12', 2.2);
 ```
 
 ---
@@ -156,3 +157,6 @@ VALUES
 - **CI/CD Integration:** Set up pipelines for automated testing and deployment (out of scope for this assessment).
 
 ---
+
+**Contact:**
+For questions or feedback, please open an issue or contact the repository owner.
