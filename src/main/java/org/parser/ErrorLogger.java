@@ -22,10 +22,13 @@ public class ErrorLogger {
      * Each error is appended as a CSV line.
      */
     public void logError(String fileName, int lineNumber, String recordType, String reason) {
+        String errorMsg = fileName + "," + lineNumber + "," + recordType + "," + reason;
         try (PrintWriter out = new PrintWriter(new FileWriter(errorFile, true))) {
-            out.println(fileName + "," + lineNumber + "," + recordType + "," + reason);
+            out.println(errorMsg);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        // Print error to terminal as well
+        System.err.println("Error: " + errorMsg);
     }
 }
