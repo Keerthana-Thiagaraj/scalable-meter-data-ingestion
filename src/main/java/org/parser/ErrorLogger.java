@@ -28,7 +28,7 @@ public class ErrorLogger {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // Print error to terminal as well
-        System.err.println("Error: " + errorMsg);
+        // Print error to terminal as well, with reason highlighted
+        System.err.println("Parsing Error in file '" + fileName + "' at line " + lineNumber + " [" + recordType + "]: " + reason);
     }
 }
