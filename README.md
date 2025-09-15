@@ -157,6 +157,3 @@ VALUES
 - **CI/CD Integration:** Set up pipelines for automated testing and deployment (out of scope for this assessment).
 
 ---
-
-**Contact:**
-For questions or feedback, please open an issue or contact the repository owner.
