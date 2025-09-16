@@ -1,5 +1,9 @@
 package org.parser;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 /**
  * Flo Energy Tech Assessment - Scalability & Retention
  *
@@ -26,16 +30,26 @@ package org.parser;
  * - Archival policies for very old data are out of scope for this codebase.
  */
 public class Config {
-    // Default batch size for DB inserts
-    public static final int DEFAULT_BATCH_SIZE = 500;
-    // Default interval length (e.g., 48 for 30-min intervals in 24h)
-    public static final int DEFAULT_INTERVAL_LENGTH = 48;
-    // DB connection details (must be set as environment variables before running)
-    public static final String DB_URL = System.getenv("DB_URL");
-    public static final String DB_USER = System.getenv("DB_USER");
-    public static final String DB_PASSWORD = System.getenv("DB_PASSWORD");
-    // Error log file location
-    public static final String ERROR_FILE = "error_log.csv";
+    private static final Properties properties = new Properties();
+
+    static {
+        try (InputStream input = Config.class.getClassLoader().getResourceAsStream("config.properties")) {
+            if (input != null) {
+                properties.load(input);
+            } else {
+                throw new RuntimeException("config.properties file not found in resources");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load config.properties", e);
+        }
+    }
+
+    public static final int DEFAULT_BATCH_SIZE = Integer.parseInt(properties.getProperty("DEFAULT_BATCH_SIZE", "500"));
+    public static final int DEFAULT_INTERVAL_LENGTH = Integer.parseInt(properties.getProperty("DEFAULT_INTERVAL_LENGTH", "48"));
+    public static final String DB_URL = properties.getProperty("DB_URL");
+    public static final String DB_USER = properties.getProperty("DB_USER");
+    public static final String DB_PASSWORD = properties.getProperty("DB_PASSWORD");
+    public static final String ERROR_FILE = properties.getProperty("ERROR_FILE", "error_log.csv");
     /**
      * Partitioning guidance:
      * For production scalability, partition the meter_readings table by month or year in PostgreSQL.
