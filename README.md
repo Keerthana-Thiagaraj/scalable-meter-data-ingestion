@@ -157,3 +157,35 @@ VALUES
 - **CI/CD Integration:** Set up pipelines for automated testing and deployment (out of scope for this assessment).
 
 ---
+
+## Design Patterns Used
+
+### Singleton Pattern
+- **Code Demonstration:**  
+  The `Config` class uses static members and a static initializer to load configuration from `config.properties` once, providing global access via static fields (e.g., `Config.DB_URL`).
+
+
+### Factory Pattern
+- **Code Demonstration:**  
+  The parsing logic in `NEM12Parser` uses factory methods to instantiate domain objects (`MeterReading`) based on the type of NEM12 record.
+
+
+### Strategy Pattern
+- **Code Demonstration:**  
+  Error handling and logging are encapsulated in the `ErrorLogger` class, allowing flexible error management strategies.
+
+
+### Template Method Pattern
+- **Code Demonstration:**  
+  The main workflow in `Main.java` follows a fixed sequence: read file, validate, transform, batch insert, log errors.
+
+### Data Access Object (DAO) Pattern
+- **Code Demonstration:**  
+  The `MeterReadingSqlGenerator` class encapsulates all SQL generation and database interaction logic.
+
+
+### Layered Architecture / Separation of Concerns
+- **Code Demonstration:**  
+  Classes are organized by responsibility: parsing (`NEM12Parser`), domain modeling (`MeterReading`), configuration (`Config`), error handling (`ErrorLogger`), and database access (`MeterReadingSqlGenerator`).
+
+---
