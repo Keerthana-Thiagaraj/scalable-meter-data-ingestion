@@ -12,7 +12,7 @@ import java.util.function.Consumer;
  * NEM12Parser parses NEM12 files line-by-line, validates structure and schema,
  * and streams valid MeterReading objects to a consumer. Errors are logged with context.
  */
-public class NEM12Parser {
+public class NEM12Parser implements FileParser {
     private final ErrorLogger errorLogger;
     private final int intervalLength;
 
