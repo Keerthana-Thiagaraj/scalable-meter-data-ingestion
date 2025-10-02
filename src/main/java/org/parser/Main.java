@@ -8,7 +8,7 @@ public class Main {
         String fileName = "test_nem12.csv"; // Change to your input file
         ErrorLogger errorLogger = new ErrorLogger("test_error_log.csv");
         int intervalLength = 48; // Example interval length, adjust as needed
-        NEM12Parser parser = new NEM12Parser(errorLogger, intervalLength);
+        FileParser parser = ParserFactory.getParser("NEM12", errorLogger, intervalLength);
 
         Consumer<MeterReading> readingConsumer = reading -> {
             System.out.println("Reading: " + reading);
@@ -24,4 +24,3 @@ public class Main {
         }
     }
 }
-
