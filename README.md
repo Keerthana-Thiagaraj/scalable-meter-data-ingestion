@@ -167,25 +167,24 @@ VALUES
 
 ### Factory Pattern
 - **Code Demonstration:**  
+  The `ParserFactory` class selects the appropriate parser (e.g., `NEM12Parser`) based on file type, enabling easy extension for new formats.  
   The parsing logic in `NEM12Parser` uses factory methods to instantiate domain objects (`MeterReading`) based on the type of NEM12 record.
-
 
 ### Strategy Pattern
 - **Code Demonstration:**  
-  Error handling and logging are encapsulated in the `ErrorLogger` class, allowing flexible error management strategies.
-
+  Error handling and logging are encapsulated in the `ErrorLogger` class, allowing flexible error management strategies.  
+  The parser selection logic uses the Strategy pattern by allowing different `FileParser` implementations (e.g., `NEM12Parser`) to be injected and used interchangeably.
 
 ### Template Method Pattern
 - **Code Demonstration:**  
-  The main workflow in `Main.java` follows a fixed sequence: read file, validate, transform, batch insert, log errors.
+  The main workflow in `Main.java` follows a fixed sequence: select parser, read file, validate, transform, batch insert, log errors.
 
 ### Data Access Object (DAO) Pattern
 - **Code Demonstration:**  
   The `MeterReadingSqlGenerator` class encapsulates all SQL generation and database interaction logic.
 
-
 ### Layered Architecture / Separation of Concerns
 - **Code Demonstration:**  
-  Classes are organized by responsibility: parsing (`NEM12Parser`), domain modeling (`MeterReading`), configuration (`Config`), error handling (`ErrorLogger`), and database access (`MeterReadingSqlGenerator`).
+  Classes are organized by responsibility: parser selection (`ParserFactory`), parsing (`NEM12Parser`), domain modeling (`MeterReading`), configuration (`Config`), error handling (`ErrorLogger`), and database access (`MeterReadingSqlGenerator`).
 
 ---
