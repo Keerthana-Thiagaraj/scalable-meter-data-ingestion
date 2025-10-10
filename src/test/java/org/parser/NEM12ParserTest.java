@@ -24,11 +24,13 @@ class NEM12ParserTest {
      * Initializes objects before each test.
      */
     @BeforeEach
-    void setUp() {
+    void setUp() throws IOException {
+        // Clear the error log before each test
+        new FileWriter("test_error_log.csv", false).close();
         errorLogger = new ErrorLogger("test_error_log.csv");
         readings = new ArrayList<>();
         auditLogs = new ArrayList<>();
-        parser = new NEM12Parser(errorLogger, 3); // 3 intervals for test
+        parser = new NEM12Parser(errorLogger); // 3 intervals for test
     }
 
     /**

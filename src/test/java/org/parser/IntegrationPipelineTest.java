@@ -43,9 +43,11 @@ class IntegrationPipelineTest {
      * Initializes objects before each test.
      */
     @BeforeEach
-    void setUp() {
+    void setUp() throws Exception {
+        // Clear the error log before each test
+        new FileWriter("integration_error_log.csv", false).close();
         sqlGen = new MeterReadingSqlGenerator("jdbc:h2:mem:testdb2;MODE=PostgreSQL", "sa", "", 2);
-        parser = new NEM12Parser(new ErrorLogger("integration_error_log.csv"), 2);
+        parser = new NEM12Parser(new ErrorLogger("integration_error_log.csv"));
         readings = new ArrayList<>();
         auditLogs = new ArrayList<>();
     }
